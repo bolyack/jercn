@@ -1,4 +1,4 @@
-package com.bamboo.ebooks.crazyjavas.chp07_basic_lib;
+package com.bamboo.ebooks.crazyjavas.ch07_basic_lib;
 
 import java.io.File;
 import java.util.Scanner;

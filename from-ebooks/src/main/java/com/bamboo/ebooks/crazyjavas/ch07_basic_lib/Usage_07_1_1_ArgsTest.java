@@ -1,4 +1,4 @@
-package com.bamboo.ebooks.crazyjavas.chp07_basic_lib;
+package com.bamboo.ebooks.crazyjavas.ch07_basic_lib;
 
 /**
  * Created by bamboo on 2017/2/6.
