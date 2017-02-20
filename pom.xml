@@ -18,5 +18,6 @@
     <modules>
         <module>from-networks</module>
         <module>from-ebooks</module>
+        <module>from-utils</module>
     </modules>
 </project>

@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>from-ebooks</artifactId>
+    <artifactId>from-utils</artifactId>
     <packaging>jar</packaging>
 
-    <name>from-ebooks</name>
+    <name>from-utils</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -23,12 +23,6 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.bamboo.jercn</groupId>
-            <artifactId>from-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
