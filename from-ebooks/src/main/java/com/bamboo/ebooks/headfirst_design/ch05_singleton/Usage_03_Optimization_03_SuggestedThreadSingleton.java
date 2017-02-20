@@ -17,7 +17,7 @@ public class Usage_03_Optimization_03_SuggestedThreadSingleton {
 
     private Usage_03_Optimization_03_SuggestedThreadSingleton(){}
 
-    public static Usage_03_Optimization_03_SuggestedThreadSingleton getInstance() {
+    public static synchronized Usage_03_Optimization_03_SuggestedThreadSingleton getInstance() {
         //检查实例，如果不存在，就进入同步区块。
         if (null == uniqueInstance) {
             //注意，只有第一次才彻底执行这里的代码
@@ -28,6 +28,7 @@ public class Usage_03_Optimization_03_SuggestedThreadSingleton {
                 }
             }
         }
+        return uniqueInstance;
     }
 
 }
