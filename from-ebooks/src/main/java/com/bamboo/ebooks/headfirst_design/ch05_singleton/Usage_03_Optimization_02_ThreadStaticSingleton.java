@@ -2,6 +2,9 @@ package com.bamboo.ebooks.headfirst_design.ch05_singleton;
 
 /**
  * Created by bamboo on 2017/2/20.
+ *
+ * @see http://www.importnew.com/23491.html
+ *
  * 优化单例多线程问题——使用“急切”(饿汉模式)创建实例，而不用延迟实例化的做法
  *
  * 如果应用程序总是创建并使用单例，或者在创建和运行时方面的负担不太繁重，你可能想要急切创建此单例。

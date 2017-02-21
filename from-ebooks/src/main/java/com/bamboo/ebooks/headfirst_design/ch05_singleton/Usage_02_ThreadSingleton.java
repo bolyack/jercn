@@ -2,6 +2,9 @@ package com.bamboo.ebooks.headfirst_design.ch05_singleton;
 
 /**
  * Created by bamboo on 2017/2/20.
+ *
+ * @see http://www.importnew.com/23491.html
+ *
  * 单例(处理多线程)
  *
  * 接上个类 Usage_01_ClassicSingleton 的问题。

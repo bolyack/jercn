@@ -2,6 +2,9 @@ package com.bamboo.ebooks.headfirst_design.ch05_singleton;
 
 /**
  * Created by bamboo on 2017/2/20.
+ *
+ * @see http://www.importnew.com/23491.html
+ *
  * 优化单例多线程问题——资源消耗不聚集无影响，放弃优化
  *
  */

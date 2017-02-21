@@ -2,7 +2,10 @@ package com.bamboo.ebooks.headfirst_design.ch05_singleton;
 
 /**
  * Created by bamboo on 2017/2/20.
- * 优化单例多线程问题——用“双重检查加锁”，在getInstance()中减少使用同步
+ *
+ * @see http://www.importnew.com/23491.html
+ *
+ * 优化单例多线程问题——用“双重检查加锁”，在getInstance()中减少使用同步 (推荐使用)
  *
  * 利用“双重检查加锁”，在getInstance（）中减少使用同步，
  * 利用双重检查加锁，首先检查是否实例已经创建了，如果尚未创建，才进行同步。这样一来，只有第一次会同步，这正是我们想要的。
