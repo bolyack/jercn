@@ -18,6 +18,8 @@
     <modules>
         <module>from-networks</module>
         <module>from-ebooks</module>
+        <module>from-basic</module>
         <module>from-utils</module>
+        <module>from-core</module>
     </modules>
 </project>

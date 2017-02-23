@@ -1,4 +1,4 @@
-package com.bamboo.jercn.dates;
+package com.bamboo.utils.date;
 
 import java.text.DateFormat;
 import java.text.ParseException;
