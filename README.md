@@ -1,7 +1,7 @@
 # jercn  java book reader
 
 modify git default user account:  
-    in jercn\.git\config last line add this code :    
+    in jercn\\.git\config last line add this code :    
 ~~~
 [user]
 	name = bolyack
