@@ -18,12 +18,13 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by admin on 2017/2/28.
- * 区块链相关工具类
+ * Hyperledger区块链相关工具类
  */
 public class BlockChainUtils {
 
@@ -138,8 +139,8 @@ public class BlockChainUtils {
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
 
                 if (HttpStatus.SC_OK == statusCode) {
-                    String responseBody = EntityUtils.toString(entity, CHARSET);
-                    responseJSON =  JSONObject.parseObject(responseBody);
+                    String responseResult = EntityUtils.toString(entity, CHARSET);
+                    responseJSON =  JSONObject.parseObject(responseResult);
                 } else {
                     String failInfo = EntityUtils.toString(entity, CHARSET);
                     throw new Exception(failInfo);
@@ -198,6 +199,136 @@ public class BlockChainUtils {
             }
         }
         return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * 实例对象的属性转化为String数组(若属性标记IgnoreAttr注解，则不转化; 如果属性值为null，不转化)
+     * @param instance 实例对象
+     * @return String[] 字符数组
+     * @throws Exception
+     */
+    public static String[] parseObj2Arr4Con (Object instance) throws Exception {
+        List<String> list = new ArrayList<String>();
+        Class<?> clazz = instance.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object val = field.get(instance);
+            if (null != val && !"".equals(val)) {
+                list.add(field.getName());
+                list.add(val.toString());
+            }
+        }
+        return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * hyperledger查询返回(单个对象字符串)对应实体对象
+     * @param jsonStr
+     * @param clazz
+     * @param <E>
+     * @return
+     * @throws Exception
+     */
+    private static <E> List<E> jsonStr2ListOne(String jsonStr, Class<E> clazz) throws Exception {
+        //String js = "{[int64:0  string:\"1\"  string:\"1\"  string:\"1\"  string:\"1\" ]}";
+        if (jsonStr == null || "".equals(jsonStr.trim())) return null;
+        int bg = jsonStr.indexOf("[") + 1;
+        int ed = jsonStr.lastIndexOf("]");
+        String newStr = jsonStr.substring(bg, ed);
+        String[] strArr = newStr.replace("\"", "").split("  ");
+
+        List<E> list = new ArrayList<E>();
+
+        Object instance = clazz.newInstance();
+        Field[] fields = clazz.getDeclaredFields();
+        for (int i = 0; i < strArr.length; i++) {
+            fields[i].setAccessible(true);
+            Class varType = fields[i].getType();
+
+            String[] localStr = strArr[i].split(":");
+
+            initValue(instance, varType, fields[i], localStr[0], localStr[1]);
+        }
+
+        list.add((E)instance);
+
+        return list;
+    }
+
+    /**
+     * hyperledger查询返回(多个对象字符串)对应实体对象
+     * @param jsonStr
+     * @param clazz
+     * @param <E>
+     * @return
+     * @throws Exception
+     */
+    public static <E> List<E> jsonStrtoList(String jsonStr, Class<E> clazz) throws Exception{
+//        String jsonStr1 = "[{\"columns\":[{\"Value\":{\"Int64\":0}},{\"Value\":{\"String_\":\"18070506633\"}},{\"Value\":{\"String_\":\"123456\"}},{\"Value\":{\"String_\":\"fbw\"}},{\"Value\":{\"String_\":\"987\"}}]},{\"columns\":[{\"Value\":{\"Int64\":12}},{\"Value\":{\"String_\":\"12070506633\"}},{\"Value\":{\"String_\":\"112123456\"}},{\"Value\":{\"String_\":\"f11bw\"}},{\"Value\":{\"String_\":\"123987\"}}]}]" ;
+
+        if (null == jsonStr || "".equals(jsonStr.trim())) return null;
+
+        if (!jsonStr.contains("columns")) return jsonStr2ListOne(jsonStr, clazz);
+
+        List<E> list = new ArrayList<E>();
+        JSONArray clm = JSONArray.parseArray(jsonStr);
+        for (int i = 0; i < clm.size(); i++) {
+
+            JSONObject str = (JSONObject)clm.get(i);
+            Object instance = null;
+            JSONArray columArray = (JSONArray)str.get("columns");
+            if (null != columArray && columArray.size() > 0) {
+
+                instance = clazz.newInstance();
+                int n = 0;
+                for (int j = 0; j < columArray.size(); j++) {
+
+                    JSONObject map = (JSONObject) columArray.get(j);
+                    JSONObject valMap = (JSONObject) map.get("Value");
+                    valMap.size();
+
+                    Field[] fields = clazz.getDeclaredFields();
+
+                    for (Map.Entry<String, Object> entry : valMap.entrySet()) {
+                        Class varType = fields[n].getType();
+                        initValue(instance, varType, fields[n], entry.getKey(), entry.getValue());
+
+                        n++;
+                    }
+                }
+                list.add((E)instance);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 根据反射给clazz对象赋值
+     * @param target
+     * @param varType
+     * @param field
+     * @param key
+     * @param value
+     * @throws Exception
+     */
+    private static void initValue(Object target, Class varType, Field field, String key,  Object value) throws Exception {
+        field.setAccessible(true);
+        if (key.toUpperCase().contains("STRING")) {
+            if (varType.equals(String.class)) {
+                field.set(target, value.toString());
+            } else if (varType.equals(BigDecimal.class)) {
+                field.set(target, new BigDecimal(value.toString()));
+            } else if (varType.equals(double.class) || varType.equals(Double.class)) {
+                field.set(target, Double.parseDouble(value.toString()));
+            }
+        } else if (key.toUpperCase().contains("INT") && (varType.equals(int.class) || varType.equals(Integer.class) )) {
+            field.set(target, Integer.parseInt(value.toString()));
+        } else if (key.toUpperCase().contains("INT") && (varType.equals(long.class) || varType.equals(Long.class) )) {
+            field.set(target, Long.parseLong(value.toString()));
+        }  else if (key.toUpperCase().contains("BOOL") && (varType.equals(boolean.class) || varType.equals(Boolean.class))) {
+            field.set(target, Boolean.parseBoolean(value.toString()));
+        }
     }
 
 
