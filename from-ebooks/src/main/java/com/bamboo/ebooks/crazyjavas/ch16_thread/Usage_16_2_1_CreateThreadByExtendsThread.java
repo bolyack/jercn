@@ -26,7 +26,9 @@ public class Usage_16_2_1_CreateThreadByExtendsThread extends Thread { //通过�
                 //创建并启动第一个线程
                 new Usage_16_2_1_CreateThreadByExtendsThread().start();
                 //创建并启动第二个线程
-                new Usage_16_2_1_CreateThreadByExtendsThread().start();
+               Thread t =  new Usage_16_2_1_CreateThreadByExtendsThread();
+               t.setName("线程1");
+               t.start();
 
                 /**
                  * //创建、并启动第三个线程
@@ -61,7 +63,8 @@ public class Usage_16_2_1_CreateThreadByExtendsThread extends Thread { //通过�
      *
      *
      * 【【使用继承Thread类的方式来创建线程类时，多个线程之间无法共享线程类的实例变量。】】
-     * 如上述代码看出Thread-0和Thread-1两个线程交替输出时的i变量不连续——注意：i变量是Usage_16_2_1_CreateThreadByExtendsThread的实例变量，
+     * 如上述代码看出 Thread-0 和 线程1 两个线程交替输出时的i变量不连续(每个线程输出的变量i是连续的)
+     *  ——注意：i变量是Usage_16_2_1_CreateThreadByExtendsThread的实例变量，
      * 而不是局部变量，故程序每次创建线程对象时都需要创建一个Usage_16_2_1_CreateThreadByExtendsThread实例对象，所以Thread-0和Thread-1
      * 不能共享该实例变量。
      *
