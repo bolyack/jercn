@@ -21,5 +21,6 @@
         <module>from-basic</module>
         <module>from-utils</module>
         <module>from-core</module>
+        <module>from-opensource</module>
     </modules>
 </project>

@@ -10,7 +10,7 @@ package com.bamboo.ebooks.crazyjavas.ch16_thread;
 public class Usage_16_2_2_CreateTheadByImplInterface {
 
     public static void main(String[] args) throws Exception {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             System.out.println(Thread.currentThread().getName() + " " + i);
             if (i == 20) {
                 System.out.println("==========当j=20时开启两个线程==========");
@@ -23,7 +23,6 @@ public class Usage_16_2_2_CreateTheadByImplInterface {
                 Usage_16_2_2_CreateByImplRunnable ut = new Usage_16_2_2_CreateByImplRunnable();
                 //通过new Thread(target)方法创建新线程， 未指定线程名字，则线程使用默认的规则为当前线程命名
                 new Thread(ut).start();
-                Thread.currentThread().sleep(10l);
                 //通过new Thread(target, name)方法创建新线程, 并指定线程的名字
                 new Thread(ut, "新线程1").start();
             }
@@ -31,9 +30,11 @@ public class Usage_16_2_2_CreateTheadByImplInterface {
     }
 
     /**
-     * 从上面main()的运行结果来看，一般情况下两个子线程的i变量是连续的(不考虑多核机器高并发情况)， 也就是采用Runnable接口的方式
+     * 从上面main()的运行结果来看，一般情况下两个子线程的i变量是连续的(不考虑多核机器高并发情况,现在的处理器都很牛，看不出效果)， 也就是采用Runnable接口的方式
      * 创建多个线程可以共享线程类(target)的实例变量。这是因为在这种方式下，程序所创建的Runnable对象只是线程的target，而多个线程可共享
      * 同一个target，所以多个线程可以共享同一个线程类(实际上应该是线程的target类)的实例变量。
+     *
+     * 因并发原因，“新线程1”|“Thread-0”总有一个输出的值(最开始输出的值)与 另一个的一致
      */
 
 }
