@@ -1,5 +1,8 @@
 package com.bamboo.utils.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -8,6 +11,8 @@ import java.io.InputStream;
  * Created by admin on 2017/3/14.
  */
 public class FileOperUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileOperUtils.class);
 
     /**
      *  Create a file and include its parent directory
@@ -26,6 +31,7 @@ public class FileOperUtils {
         if (!file.exists()) {
             file.createNewFile();
         }
+        logger.info(file.getAbsolutePath());
         return file;
     }
 
