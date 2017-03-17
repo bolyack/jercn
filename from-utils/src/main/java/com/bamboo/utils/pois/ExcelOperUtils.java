@@ -25,6 +25,9 @@ public class ExcelOperUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(ExcelOperUtils.class);
 
+    public static final String XLS = "XLS";
+    public static final String XLSX = "XLSX";
+
     /**
      * auto opernate the data in memary
      * @throws Exception
@@ -115,6 +118,14 @@ public class ExcelOperUtils {
      * @throws Exception
      */
     public static void createExcel(String sheetName, String headTitle, String outPath, List<List<String>> list) throws Exception {
+        if (null == list || list.size() == 0) {
+            logger.warn("none data to generate");
+            return;
+        }
+
+        String contentType = outPath.substring(outPath.lastIndexOf(".") + 1);
+        if (!XLS.equals(contentType.toUpperCase()) || !XLSX.equals(contentType.toUpperCase())) throw new Exception("Generated file type error can only be xls or xlsx");
+
         logger.info("begin generate excel...");
         SXSSFWorkbook wb = new SXSSFWorkbook();
         /**
@@ -210,8 +221,8 @@ public class ExcelOperUtils {
     public static void main(String[] args) throws Throwable {
 //        autoFlushDisk();
 //        manualFlushDisk();
-        List<List<String>> a = initTestData();
-        createExcel("aaa", "bbb", "E:\\dd\\aa\\cc.xlsx", a);
+        List<List<String>> a =  initTestData();
+        createExcel("aaa", "bbb", "E:\\dd\\aa\\cc.doc", a);
     }
 
 }
