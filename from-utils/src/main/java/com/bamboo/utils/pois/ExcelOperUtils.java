@@ -134,6 +134,7 @@ public class ExcelOperUtils {
          *  wb.setCompressTempFiles(true); // temp files will be gzipped
          */
 
+        //set border
         CellStyle cellStyle = wb.createCellStyle();
         cellStyle.setBorderBottom(BorderStyle.THIN);
         cellStyle.setBorderLeft(BorderStyle.THIN);
@@ -147,7 +148,9 @@ public class ExcelOperUtils {
         sh.setColumnWidth(9, 12000);
 
 
+        //set first row is blank
         Row rowBlank = sh.createRow(0);
+        //set table first row title
         Row rowHead = sh.createRow(1);
         for(int cellnum = 1; cellnum <= list.get(0).size(); cellnum++){
             Cell lieRow = rowHead.createCell(cellnum);

@@ -3,9 +3,7 @@ package com.bamboo.utils.io;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Created by admin on 2017/3/14.
@@ -51,6 +49,24 @@ public class FileOperUtils {
 
         in.close();
         fos.close();
+    }
+
+    /**
+     * simple read file by line， need to complete
+     * @param fileName
+     * @throws Exception
+     */
+    public static void readFileByLine(String fileName) throws Exception {
+        Reader reader = new FileReader(fileName);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String str = "";
+        while((str = bufferedReader.readLine()) != null) {
+            System.out.println(str);
+        }
+    }
+
+    public static void main(String[] args) throws  Exception {
+        readFileByLine("C:\\Users\\admin\\Desktop\\prd_log\\test\\akweb\\crius.log.2017-03-26");
     }
 
 }
