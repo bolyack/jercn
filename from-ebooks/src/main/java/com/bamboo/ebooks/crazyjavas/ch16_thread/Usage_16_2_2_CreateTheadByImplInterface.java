@@ -21,6 +21,7 @@ public class Usage_16_2_2_CreateTheadByImplInterface {
                  */
                 //创建Runnable实现类的对象
                 Usage_16_2_2_CreateByImplRunnable ut = new Usage_16_2_2_CreateByImplRunnable();
+                //以Runable实现类的对象作为Thread的target来创建Thread对象，即线程对象。
                 //通过new Thread(target)方法创建新线程， 未指定线程名字，则线程使用默认的规则为当前线程命名
                 new Thread(ut).start();
                 //通过new Thread(target, name)方法创建新线程, 并指定线程的名字
