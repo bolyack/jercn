@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by admin on 2017/3/17.
  */
-public class RandomUtils {
+public class RandomUtil {
 
     /**
      * String is generated randomly by specifying the length of the string

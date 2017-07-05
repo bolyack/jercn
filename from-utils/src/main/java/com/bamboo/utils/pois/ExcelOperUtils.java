@@ -1,8 +1,7 @@
 package com.bamboo.utils.pois;
 
-import com.bamboo.utils.basic.RandomUtils;
+import com.bamboo.utils.basic.RandomUtil;
 import com.bamboo.utils.io.FileOperUtils;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellReference;
@@ -214,7 +213,7 @@ public class ExcelOperUtils {
         for (int j = 0; j < 20; j++) {
             List<String> local = new ArrayList<String>();
             for (int i=0 ; i < 15; i++) {
-                local.add(RandomUtils.getRandomCharByLength(3) + i);
+                local.add(RandomUtil.getRandomCharByLength(3) + i);
             }
             result.add(local);
         }
