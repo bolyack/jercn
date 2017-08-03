@@ -24,8 +24,8 @@ public class AliDemoOssUtils {
     // accessKeyId和accessKeySecret是OSS的访问密钥，您可以在控制台上创建和查看，
     // 创建和查看访问密钥的链接地址是：https://ak-console.aliyun.com/#/。
     // 注意：accessKeyId和accessKeySecret前后都没有空格，从控制台复制时请检查并去除多余的空格。
-    private static String accessKeyId = "LTAI0zcwfjTNhDWh";
-    private static String accessKeySecret = "D07idCi7PjfTFDy3gXvC8299bHwwBq";
+    private static String accessKeyId = "LTAI0zcwsfjTNhDWhs";
+    private static String accessKeySecret = "D07idCi7sPjfTFDy3gaXvC8299bHwwBq";
 
 
     public static String prefix = "test1/test2/oss-java-sdk-";
