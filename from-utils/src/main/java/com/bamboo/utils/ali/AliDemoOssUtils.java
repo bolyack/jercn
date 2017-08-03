@@ -36,16 +36,16 @@ public class AliDemoOssUtils {
         OSSClient ossClient = init();
 
 
-//        upload(ossClient, "fjs-vpc-oss-pub", prefix + suffix); //downLoad
-//        downLoad(ossClient, "fjs-vpc-oss-pub", prefix + suffix);  //deleteFile
-//        deleteFile(ossClient, "fjs-vpc-oss-pub", prefix + suffix);  //deleteFile
-//        bacthUploadFile(ossClient, "fjs-vpc-oss-pub");  //bacthUploadFile
-//        bacthDeleteFile(ossClient, "fjs-vpc-oss-pub");  //bacthDeleteFile
+//        upload(ossClient, "akcm-vpc-oss-pub", prefix + suffix); //downLoad
+//        downLoad(ossClient, "akcm-vpc-oss-pub", prefix + suffix);  //deleteFile
+//        deleteFile(ossClient, "akcm-vpc-oss-pub", prefix + suffix);  //deleteFile
+//        bacthUploadFile(ossClient, "akcm-vpc-oss-pub");  //bacthUploadFile
+//        bacthDeleteFile(ossClient, "akcm-vpc-oss-pub");  //bacthDeleteFile
     }
 
     public static OSSClient init() {
         OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-        BucketInfo f = ossClient.getBucketInfo("fjs-vpc-oss-pub");
+        BucketInfo f = ossClient.getBucketInfo("akcm-vpc-oss-pub");
         return ossClient;
     }
 
