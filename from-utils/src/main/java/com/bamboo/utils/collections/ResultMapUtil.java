@@ -61,14 +61,3 @@ public class ResultMapUtil {
     }
 
 }
-
-class Key<T> {
-
-    public String id;
-    public Class<T> type;
-
-    public Key(String id, Class<T> type) {
-        this.id = id;
-        this.type = type;
-    }
-}
