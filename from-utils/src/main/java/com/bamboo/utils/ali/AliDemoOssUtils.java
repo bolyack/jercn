@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,15 @@ public class AliDemoOssUtils {
 
     public static String prefix = "test1/test2/oss-java-sdk-";
     public static String suffix = ".txt";
+    private static String Topic_Prefix;
+
+
+
+    private static String bucketName;
+
+    private static String aliyunOssUrl;
+
+    private static final String OSS_FILE_SEPARATOR = "/";
 
 
     public static void main(String[] args) throws Exception {
@@ -173,4 +183,54 @@ public class AliDemoOssUtils {
             System.out.println("\t" + object);
         }
     }
+
+
+    /**
+     * 上传附件
+     * @param fileName
+     * @param in
+     * @return
+     */
+    public static String uploadImag(String fileName, InputStream in) {
+        OSSClient ossClient = null;
+        try {
+            ossClient = init();
+            Date date = new Date();
+
+            noExistCreateDir(ossClient, Topic_Prefix + OSS_FILE_SEPARATOR);
+
+            String keyUrl = Topic_Prefix + OSS_FILE_SEPARATOR + date.getTime();
+            String suffix = "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+
+            logger.info("start upload!");
+            ossClient.putObject(new PutObjectRequest(bucketName, keyUrl + suffix, in));
+            logger.info("End upload!");
+            String picUrl = aliyunOssUrl + keyUrl + suffix;
+
+            return picUrl;
+        } finally {
+            if (null != ossClient)
+                ossClient.shutdown();
+        }
+    }
+
+
+    /**
+     * 判断OSS是否存在目录，不存在就创建一个
+     * @param ossClient
+     * @param dirPath
+     * @return
+     */
+    public static void noExistCreateDir(OSSClient ossClient, String dirPath) {
+        // Object是否存在   https://help.aliyun.com/document_detail/32015.html?spm=a2c4g.11186623.2.7.tDzInl  Object是否存在
+        boolean found = ossClient.doesObjectExist(bucketName, dirPath);
+        if (!found) {
+            final String keySuffixWithSlash = dirPath;
+            // https://help.aliyun.com/document_detail/32013.html?spm=a2c4g.11186623.2.5.My8H92  创建模拟文件夹
+            ossClient.putObject(bucketName, keySuffixWithSlash, new ByteArrayInputStream(new byte[0]));
+            // https://help.aliyun.com/document_detail/32015.html?spm=a2c4g.11186623.2.7.tDzInl  设置Object ACL
+            ossClient.setObjectAcl(bucketName, keySuffixWithSlash, CannedAccessControlList.PublicRead);
+        }
+    }
+
 }
