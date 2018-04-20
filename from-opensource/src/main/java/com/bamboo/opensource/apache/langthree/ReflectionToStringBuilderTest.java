@@ -1,6 +1,7 @@
 package com.bamboo.opensource.apache.langthree;
 
-import com.bamboo.opensource.apache.langthree.Domain.Person;
+import com.bamboo.opensource.apache.langthree.domain.Person;
+import com.bamboo.opensource.apache.langthree.domain.PersonToStringFomratOverride;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -41,13 +42,13 @@ public class ReflectionToStringBuilderTest {
         System.out.println();
         //打印对象toString()字符串，默认不打印transient属性的值
         System.out.println(ReflectionToStringBuilder.toString(person));
-        //打印对象toString()字符串，默认不打印transient属性的值
+        //打印对象toString()字符串，默认不打印transient属性的值, 但自定义对象中日期属性的输出样式
         System.out.println(ReflectionToStringBuilder.toString(person, new MyStyle()));
         //打印对象toString()字符串， 格式化日期等特殊属性，并打印transient属性的值
         System.out.println(ReflectionToStringBuilder.toString(person, new MyStyle(), true));
 
         /**
-         * 通过 ReflectionToStringBuilder 子类 , 覆盖其 accept 方法来加以筛选
+         * 通过 ReflectionToStringBuilder 子类 , 覆盖其 accept 方法来加以筛选, 如PersonToStringFomratOverride中toString()方法
          *      public String toString() {
 
                      return (new ReflectionToStringBuilder(this) {
@@ -60,6 +61,22 @@ public class ReflectionToStringBuilderTest {
                 }
          *
          */
+        System.out.println("=====================================================");
+        PersonToStringFomratOverride personFO = new PersonToStringFomratOverride();
+        personFO.setName("boo");
+        personFO.setPassword("1234wEEXa");
+        personFO.setBankNo("622609012304235560");
+        personFO.setAge(26);
+        personFO.setScore(98);
+        personFO.setBorthDay(new Date());
+        personFO.setHeight(100d);
+        personFO.setWeight(101d);
+        personFO.setMarry(true);
+        personFO.setSmoker(false);
+        personFO.setRunMile(1000l);
+        personFO.setWalkMile(3000l);
+        personFO.setSalary(new BigDecimal(3940.5));
+        System.out.println(personFO.toString());
 
     }
 

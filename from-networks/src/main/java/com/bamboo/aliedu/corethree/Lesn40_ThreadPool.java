@@ -140,8 +140,8 @@ public class Lesn40_ThreadPool {
     public static void main(String[] args) throws Exception {
 //        testNewCachedThreadPool();
 //        testNewSingleThreadExecutor();
-//        testNewFixedThreadPool();
-        testNewScheduledThreadPool();
+        testNewFixedThreadPool();
+//        testNewScheduledThreadPool();
     }
 
 }
