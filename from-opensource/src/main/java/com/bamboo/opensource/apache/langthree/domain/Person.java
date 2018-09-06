@@ -1,4 +1,4 @@
-package com.bamboo.opensource.apache.langthree.Domain;
+package com.bamboo.opensource.apache.langthree.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
