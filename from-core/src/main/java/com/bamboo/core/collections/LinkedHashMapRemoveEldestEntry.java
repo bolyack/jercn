@@ -1,4 +1,4 @@
-package com.bamboo.java.util;
+package com.bamboo.core.collections;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
