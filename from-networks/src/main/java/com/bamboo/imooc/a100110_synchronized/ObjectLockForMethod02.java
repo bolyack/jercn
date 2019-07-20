@@ -14,7 +14,7 @@ public class ObjectLockForMethod02 implements Runnable {
     }
 
     /***
-     * 对象锁的形式2---普通方法锁
+     * 对象锁的形式2---普通方法锁(默认锁对象是this，即当前对象实例)
      */
     public synchronized void commonMethodDecorate() {
         System.out.println("我是对象锁的方法修饰符形式，我叫 " + Thread.currentThread().getName());
