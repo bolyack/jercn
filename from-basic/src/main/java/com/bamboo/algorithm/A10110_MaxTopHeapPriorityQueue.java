@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
  * topK：输入n个整数，找出其中最小的K个数。
  * @see https://www.jianshu.com/p/257820688bf1
  * 延伸：https://www.jianshu.com/p/f1fd9b82cb72
+ * 参照：https://www.cnblogs.com/Elliott-Su-Faith-change-our-life/p/7472265.html
  */
 public class A10110_MaxTopHeapPriorityQueue {
 
