@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
  * @see https://www.jianshu.com/p/257820688bf1
  * 延伸：https://www.jianshu.com/p/f1fd9b82cb72
  * 参照：https://www.cnblogs.com/Elliott-Su-Faith-change-our-life/p/7472265.html
+ * 其他：https://www.jianshu.com/p/d292401a183a(利用堆实现排序和解决topk问题之Java实现)
  */
 public class A10110_MaxTopHeapPriorityQueue {
 
