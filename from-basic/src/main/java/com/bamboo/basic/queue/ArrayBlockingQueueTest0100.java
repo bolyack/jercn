@@ -15,7 +15,7 @@ public class ArrayBlockingQueueTest0100 {
 
     public Logger logger = Logger.getLogger(ArrayBlockingQueueTest0100.class.getName());
 
-    //---初始化指定容量的数组，初始化非公平的重入锁
+    //---初始化指定容量的数组，初始化非公平的重入锁--(插入或移除时，按FIFO顺序处理)
     private static BlockingQueue<Food> queues = new ArrayBlockingQueue<Food>(2);
 
     class Food {
