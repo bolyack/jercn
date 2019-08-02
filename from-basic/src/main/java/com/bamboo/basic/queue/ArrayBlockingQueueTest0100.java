@@ -10,6 +10,10 @@ import java.util.logging.Logger;
  * @See https://www.jianshu.com/p/2c9e4abffb04
  * @See https://blog.51cto.com/janephp/2417270
  * @See https://cloud.tencent.com/developer/article/1350854
+ *  实现原理分析：
+ *      ArrayBlockingQueue实现并不复杂，内部采用了一个Object数组来保存元素，使用了ReentrantLock来保证同步，
+ *      并通过重入锁的两个condition条件队列来分别控制生产者和消费者的阻塞和唤醒的调度通信，元素的插入和删除均是对数组的元素赋值，
+ *      取走了就赋值null，其他就是数据本身，不像链表是按需所取。
  */
 public class ArrayBlockingQueueTest0100 {
 
