@@ -30,6 +30,11 @@ public class Test_010_NewCachedThreadPool {
 
     /**
      *  结果可以看出，线程并没创建出20个，而是复用了已经创建的线程去执行任务
+     *
+     *  CacheThreadPool不指定具体数量的线程去读取并只执行任务队列中的任务,但是它有个最大线程数(Integer.MAX_VALUE=2的32次-1),
+     *  当 任务队列饱和无法插入新任务时,会自动生成一个新的线程去执行新插入的任务,并参与读取饱和的任务队列并执行.
+     *  如果高峰期生成了10个线程,低谷期只需要一个线程来执行,其余的9个线程在存活一段时间后就会被终止.
+     *  存活时间默认是一分钟.这一点要和FixedThreadPool区分.
 
      18,  pool-1-thread-6 is over, cost time ：1
      15,  pool-1-thread-3 is over, cost time ：2
