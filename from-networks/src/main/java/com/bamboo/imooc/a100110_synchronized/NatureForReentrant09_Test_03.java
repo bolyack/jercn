@@ -28,6 +28,10 @@ class NatureForReentrant09_Test_03_Sub extends NatureForReentrant09_Test_03 {
 
 }
 
+
+//------------------------------------------------------------------------------------------------
+
+
 class NatureForReentrant09_Test_03_Other_Super {
 
     public synchronized void otherMethod() {
