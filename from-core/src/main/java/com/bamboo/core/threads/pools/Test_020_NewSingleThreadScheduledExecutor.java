@@ -4,7 +4,9 @@ import java.util.concurrent.*;
 import java.util.logging.Logger;
 
 /**
- * Java调度线程池
+ * Java 定时调度线程池
+ *     创建和启动一个周期的线程，该线程第在初始delay时间后第一次启动，然后周期性的执行（周期：period）。
+ *     如果一个线程运行的时间大于周期period,后面的线程可能会晚一点启动，但不会同时执行。
  *
  * @See  https://www.jianshu.com/p/0cfcea8db493
  * @See  https://www.jianshu.com/p/8c4c160ebdf7 (调度周期设置 的时间比任务本身执行的时间短的话会出现什么情况？也就是在线程调度时间已经到了但是上次的任务还没有做完的情况下，ScheduleExecutorService是怎么处理的？)
