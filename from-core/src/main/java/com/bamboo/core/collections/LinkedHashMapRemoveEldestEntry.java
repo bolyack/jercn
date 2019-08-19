@@ -30,6 +30,7 @@ public class LinkedHashMapRemoveEldestEntry {
         System.out.println("" + lhm); // 打印映射表里的5个元素
 
         lhm.put(5, "W"); // 此时添加第6个元素，因映射表总容量为5，则最旧的条目是 0 -> H 需要被移除, 则映射表条目   1-> E, 2 -> L, 3 -> L, 4 -> O, 5 -> W
+        System.out.println("" + lhm);
         lhm.put(6, "Y"); // 此时添加第7个元素，因映射表总容量为5，则最旧的条目是 1 -> E 需要被移除, 则映射表条目   2 -> L, 3 -> L, 4 -> O, 5 -> W, 6 -> Y
         System.out.println("" + lhm);
 
