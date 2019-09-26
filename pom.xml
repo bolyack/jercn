@@ -22,6 +22,7 @@
         <module>from-utils</module>
         <module>from-core</module>
         <module>from-opensource</module>
+        <module>from-test</module>
     </modules>
 
     <!-- 工程JDK编译器的版本 -->
