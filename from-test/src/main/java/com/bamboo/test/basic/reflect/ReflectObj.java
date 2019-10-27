@@ -14,6 +14,14 @@ public class ReflectObj {
         return age;
     }
 
+    public int getHighAge(int age) {
+        return this.age + age;
+    }
+
+    protected int getRandom() {
+        return 1;
+    }
+
     public int getNameMethod() {
         return name;
     }

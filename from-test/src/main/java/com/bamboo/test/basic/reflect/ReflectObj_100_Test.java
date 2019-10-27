@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class ReflectObj_100_Test {
+public class ReflectObj_100_Test extends Object {
 
     public static void main(String[] args) throws Exception {
         Class clazz = ReflectObj.class;
@@ -23,16 +23,27 @@ public class ReflectObj_100_Test {
             }
         }
 
-        System.out.println("\n======================================\n\n");
+        //----getDeclaredMethods 方法返回类或接口声明的所有方法，包括公共、保护、默认（包）访问和私有方法，但不包括继承的方法。----
+        System.out.println("\n==================getDeclaredMethods====================");
         Method[] methods = clazz.getDeclaredMethods();
         for (Method m : methods) {
             System.out.println("方法" + m.getName());
         }
-        System.out.println("\n======================================\n\n");
+        System.out.println("==================getDeclaredMethods====================\n\n");
 
-        Method ageMethod = clazz.getDeclaredMethod("getAgeMethod");
-        ageMethod.setAccessible(true);
-        System.out.println("getAgeMethod()--返回值 --> " + ageMethod.invoke(ro));
+        //-----通过 getMethods() 方法返回某个类的所有公用（public）方法，包括其继承类的公用方法。---
+        System.out.println("\n==================getMethods====================");
+        Method[] methodAs = clazz.getMethods();
+        for (Method m : methodAs) {
+            System.out.println("方法" + m.getName());
+        }
+        System.out.println("==================getMethods====================\n\n");
+
+        //---getMethod 方法返回一个特定的方法，其中第一个参数为方法名称，后面的参数为方法的参数对应Class的对象。--
+        System.out.println("\n==================getMethod()--getHighAge====================");
+        Method highAgeMethod = clazz.getMethod("getHighAge", int.class);
+        System.out.println("getAgeMethod()--返回值 --> " + highAgeMethod.invoke(ro, 12));
+        System.out.println("==================getMethod()--getHighAge====================\n\n");
 
 
     }
