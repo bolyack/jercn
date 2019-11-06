@@ -9,9 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>from-test</artifactId>
     <packaging>jar</packaging>
     <name>from-test</name>
     <url>http://maven.apache.org</url>
+    <dependencies>
+        <dependency>
+            <groupId>com.bamboo.jercn</groupId>
+            <artifactId>from-utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,5 +1,6 @@
 package com.bamboo.utils.io;
 
+
 import junit.framework.TestCase;
 
 import java.io.*;
@@ -11,7 +12,7 @@ import java.net.URL;
 public class DownLoadUtilTest extends TestCase {
 
     public void testDownLoad() throws Exception {
-        String url = "http://fjs-vpc-oss-pub.oss-cn-hangzhou.aliyuncs.com/guide/crm_mobile_guide_v1.3.0.pdf";
+        /*String url = "http://fjs-vpc-oss-pub.oss-cn-hangzhou.aliyuncs.com/guide/crm_mobile_guide_v1.3.0.pdf";
         InputStream in = DownLoadUtil.downLoadFileForByteInputStream(new URL(url));
         File file = new File("test.pdf");
         if (!file.exists()) file.createNewFile();
@@ -22,7 +23,7 @@ public class DownLoadUtilTest extends TestCase {
             fos.write(buffer, 0, count);
         }
         fos.close();
-        in.close();
+        in.close();*/
     }
 
 
