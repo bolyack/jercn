@@ -99,6 +99,13 @@
         </dependency>
         <!-- 阿里云oss服务-end -->
 
+        <!-- joda time日期类 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.5</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
