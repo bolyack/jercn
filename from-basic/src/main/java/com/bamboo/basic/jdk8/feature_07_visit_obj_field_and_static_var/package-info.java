@@ -1,0 +1,1 @@
+package com.bamboo.basic.jdk8.feature_07_visit_obj_field_and_static_var;
