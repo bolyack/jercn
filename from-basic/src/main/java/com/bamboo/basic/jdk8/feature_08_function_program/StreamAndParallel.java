@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * @Author bamboo
  * @Date 2019/12/30 20:08
  * @Version 1.0
+ * @Link https://blog.csdn.net/sinat_31465609/article/details/93498840
  **/
 public class StreamAndParallel {
 
@@ -32,8 +33,8 @@ public class StreamAndParallel {
     }
 
     public static void main(String[] args) {
-        createStream();
-//        createParallelStream();
+//        createStream();
+        createParallelStream();
     }
 
 
