@@ -47,13 +47,31 @@ public class StreamFunctionUsage {
      * // 测试用例2 - (2) 交易员都在哪些不同的城市工作过?
      */
     private static void doTask2() {
-//        transactions.stream().map(t -> t.getTrade().getCity()).distinct().forEach(c -> System.out.println(c));
+        /** transactions.stream().map(t -> t.getTrade().getCity()).distinct().forEach(c -> System.out.println(c)); */
         transactions.stream().map(t -> t.getTrade().getCity()).distinct().collect(Collectors.toList()).forEach(c -> System.out.println(c));
     }
 
+    /**
+     * // 测试用例3 - (3) 查找所有来自于剑桥的交易员，并按姓名排序。
+     */
+    private static void doTask3() {
+        transactions.stream().map(StreamFunctionTransaction::getTrade)
+                .filter(t -> "Cambridge".equals(t.getCity()))
+                .distinct()
+//                .sorted(Comparator.comparing(StreamFunctionTrade::getName))
+                .sorted((StreamFunctionTrade t1, StreamFunctionTrade t2) -> {
+                    return t1.getName().compareTo(t2.getName());
+                })
+                .collect(Collectors.toList())
+                .forEach(c -> System.out.println(c));
+    }
+
+
+
     public static void main(String[] args) {
 //        doTask1();
-        doTask2();
+//        doTask2();
+        doTask3();
     }
 
 
