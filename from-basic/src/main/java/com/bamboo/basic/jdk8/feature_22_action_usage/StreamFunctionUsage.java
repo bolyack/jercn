@@ -3,6 +3,7 @@ package com.bamboo.basic.jdk8.feature_22_action_usage;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -66,12 +67,75 @@ public class StreamFunctionUsage {
                 .forEach(c -> System.out.println(c));
     }
 
+    /**
+     * // 测试用例4 - (4) 返回所有交易员的姓名字符串，按字母顺序排序。
+     */
+    private static void doTask4() {
+        transactions.stream().map(StreamFunctionTransaction::getTrade)
+                .map(StreamFunctionTrade::getName)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList())
+                .forEach(c -> System.out.println(c));
+    }
 
+    /**
+     * // 测试用例5 - (5) 有没有交易员是在米兰工作的?
+     */
+    private static void doTask5() {
+        Boolean isMatch = transactions.stream().map(StreamFunctionTransaction::getTrade)
+                .anyMatch(t -> "Milan".equals(t.getCity()));
+        System.out.println(String.format("isMatch: %s", isMatch));
+    }
+
+    /**
+     * 测试用例6 - (6) 打印生活在剑桥的交易员的所有交易额。
+     */
+    private static void doTask6() {
+        transactions.stream().filter(t -> "Cambridge".equals(t.getTrade().getCity()))
+                .forEach(c -> System.out.println(c));
+    }
+
+    /**
+     * 测试用例7 - (7) 所有交易中，最高的交易额是多少?
+     */
+    private static void doTask7() {
+        Optional<Integer> optional = transactions.stream().map(StreamFunctionTransaction::getAmount).reduce(Integer::max);
+        if (optional.isPresent()) {
+            System.out.println("maxTransaction: " + optional.get());
+        }
+    }
+
+    /**
+     * 测试用例7 - (8) 找到交易额最小的交易。
+     */
+    private static void doTask8() {
+        Optional<Integer> optional = transactions.stream().map(StreamFunctionTransaction::getAmount).reduce(Integer::min);
+        if (optional.isPresent()) {
+            System.out.println("minTransaction: " + optional.get());
+        }
+
+        Optional<StreamFunctionTransaction> minTransaction = transactions.stream().min(Comparator.comparing(StreamFunctionTransaction::getAmount));
+        if (minTransaction.isPresent()) {
+            System.out.println("minTransaction: " +minTransaction.get());
+        }
+
+        Optional<StreamFunctionTransaction> minTransactionOther = transactions.stream().reduce((c1, c2) -> c1.getAmount() < c2.getAmount() ? c1 : c2);
+        if (minTransactionOther.isPresent()) {
+            System.out.println("minTransactionOther: " +minTransaction.get());
+        }
+
+    }
 
     public static void main(String[] args) {
 //        doTask1();
 //        doTask2();
-        doTask3();
+//        doTask3();
+//        doTask4();
+//        doTask5();
+//        doTask6();
+//        doTask7();
+        doTask8();
     }
 
 
