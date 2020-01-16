@@ -43,9 +43,17 @@ public class StreamFunctionUsage {
                 .forEach(c -> System.out.println(c));
     }
 
+    /**
+     * // 测试用例2 - (2) 交易员都在哪些不同的城市工作过?
+     */
+    private static void doTask2() {
+//        transactions.stream().map(t -> t.getTrade().getCity()).distinct().forEach(c -> System.out.println(c));
+        transactions.stream().map(t -> t.getTrade().getCity()).distinct().collect(Collectors.toList()).forEach(c -> System.out.println(c));
+    }
 
     public static void main(String[] args) {
-        doTask1();
+//        doTask1();
+        doTask2();
     }
 
 

@@ -9,11 +9,11 @@ package com.bamboo.basic.jdk8.feature_22_action_usage;
 public class StreamFunctionTrade {
 
     private String name;
-    private String school;
+    private String city;
 
-    public StreamFunctionTrade(String name, String school) {
+    public StreamFunctionTrade(String name, String city) {
         this.name = name;
-        this.school = school;
+        this.city = city;
     }
 
     public String getName() {
@@ -24,19 +24,19 @@ public class StreamFunctionTrade {
         this.name = name;
     }
 
-    public String getSchool() {
-        return school;
+    public String getCity() {
+        return city;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
         return "StreamFunctionTrade{" +
                 "name='" + name + '\'' +
-                ", school='" + school + '\'' +
+                ", city='" + city + '\'' +
                 '}';
     }
 }
