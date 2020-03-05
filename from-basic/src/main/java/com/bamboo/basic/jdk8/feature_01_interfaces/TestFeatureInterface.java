@@ -15,6 +15,7 @@ public class TestFeatureInterface {
         BaseInterface squareITF = new SquareCalculate();
         System.out.println("正方形求和(接口定义普通方法)===>" + squareITF.addSum(2,2));
         System.out.println("正方形平方值(接口默认方法)===>" + squareITF.sqrt(4));
+        System.out.println("接口中另一个默认的方法===>" + squareITF.anOtherMethod());
 
     }
 

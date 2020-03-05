@@ -19,5 +19,12 @@ public interface BaseInterface {
         return Math.sqrt(a);
     }
 
+    /**
+     * JDK8 使用default关键字定义的另一个默认方法。
+     * @return
+     */
+    default String anOtherMethod() {
+        return "other default method in interface!";
+    }
 
 }
