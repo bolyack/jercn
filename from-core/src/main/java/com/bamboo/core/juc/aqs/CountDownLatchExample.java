@@ -1,4 +1,4 @@
-package com.bamboo.core.juc.aqs.cdl;
+package com.bamboo.core.juc.aqs;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  * @create: 2021-04-08
  * @link https://mp.weixin.qq.com/s/72XXWIMJ230bwfu4PUuS-Q
  **/
-public class JoinUsageTest {
+public class CountDownLatchExample {
 
     static CountDownLatch latch = new CountDownLatch(2);
 
