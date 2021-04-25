@@ -1,8 +1,6 @@
 package com.bamboo.core.juc.aqs;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,11 +26,10 @@ public class SemaphoreExample {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-
                 //拿到当前线程的名称
                 System.out.println(String.format("老司机：%s, 停车场外排队，时间：%s",
                         Thread.currentThread().getName(),
-                        Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+                        DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now())));
                 try {
                     //执行此行，让所有线程先排队等待进入停车场
                     Thread.sleep(100);
@@ -42,14 +39,14 @@ public class SemaphoreExample {
 
                     System.out.println(String.format("老司机：%s, 已进入停车场，时间：%s",
                             Thread.currentThread().getName(),
-                            Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+                            DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now())));
 
                     Thread.sleep(1000L);
 
 
                     System.out.println(String.format("老司机：%s, 离开停车场，时间：%s",
                             Thread.currentThread().getName(),
-                            Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+                            DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now())));
 
                     //释放锁
                     semaphore.release();
